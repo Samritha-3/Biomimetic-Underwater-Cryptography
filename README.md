@@ -64,12 +64,48 @@ Before running any scripts, ensure your local directory is organized exactly lik
     ├── shannon_entropy.py
     └── dashboard.py
 ```
----
+📦 2. Install Required Dependencies
+Open your terminal or command prompt inside your project directory and execute the following command to install the required computer vision, array processing, and imaging interfaces:
 
-## 🔒 Copyright & Intellectual Property
+Bash
+pip install opencv-python numpy pillow
+🏃‍♂️ 3. Step-by-Step Execution Guide
+Step A: Extract Telemetry Data from Video Source
+To process your raw mp4 file (results.mp4), track bounding box positions, and output pixel coordinate maps into your tracking database, execute the extraction script:
 
+Bash
+python src/extract.py
+Output: This will create or update outputs/tracking_data.csv filled with coordinates matching every frame processed.
+
+Step B: Generate Secure Keys from the Dataset
+To simulate how the cryptographic core converts those raw extracted CSV coordinate entries into unique, one-way SHA-256 keys, run the key generator:
+
+Bash
+python src/key_generation.py
+Observation: Notice how the system displays the switch between FISH mode when coordinates are present and FALLBACK mode if a frame records 0 fish.
+
+Step C: Run Academic Security Verification
+To calculate the mathematical uniform distribution of your generated keys and verify that your system achieves the required security pass score, run the Shannon Entropy test:
+
+Bash
+python src/shannon_entropy.py
+Expected Terminal Display:
+
+Plaintext
+=========================================
+      ACADEMIC SECURITY VERIFICATION     
+=========================================
+Total Key Characters Analyzed: 11008
+Your Hybrid System Entropy Score: 3.9995 / 4.0000
+Status: PASSED (Uniform Random Distribution Verified)
+Step D: Launch the Real-Time Graphical Dashboard
+To view everything executing simultaneously through a unified desktop GUI overlay—including a video stream container, live coordinate printing, key classification tracking, and a scrolling network log ledger—run the primary dashboard application:
+
+Bash
+python src/dashboard.py
+🔒 Copyright & Intellectual Property
 © 2026 Samritha S. All rights reserved.
 
-This repository and its contents (including all source code, documentation, datasets, and simulation configurations) are the exclusive intellectual property of the author. 
+This repository and its contents (including all source code, documentation, datasets, and simulation configurations) are the exclusive intellectual property of the author.
 
-**No license is granted for this software.** Visitors may view and clone the code for personal educational evaluation only. Unauthorized copying, modification, distribution, redistribution, or commercial use of this material without explicit written permission from the author is strictly prohibited.
+No open-source license is granted for this software. Visitors may view and clone the code for personal educational evaluation only. Unauthorized copying, modification, distribution, redistribution, or commercial use of this material without explicit written permission from the author is strictly prohibited.
