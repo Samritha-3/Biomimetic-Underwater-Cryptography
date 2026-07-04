@@ -1,6 +1,3 @@
-# Biomimetic-Underwater-Cryptography
-A biomimetic cryptographic key engine for ROVs that converts chaotic marine tracking coordinates and nanosecond timestamps into high-entropy SHA-256 keys.
-
 # Biomimetic Underwater Cryptography: Biological Chaos Entropy Engine
 
 An innovative, zero-hardware-overhead cryptographic pipeline designed for Remotely Operated Vehicles (ROVs) and Autonomous Underwater Vehicles (AUVs). This system repurposes live, on-board computer vision object-tracking streams to harvest the chaotic physical coordinates of marine life, transforming biological behavior into high-entropy, non-deterministic SHA-256 keys for secure subsea acoustic communication networks.
