@@ -63,7 +63,7 @@ Before running any scripts, ensure your local directory is organized exactly lik
     ├── key_generation.py
     ├── shannon_entropy.py
     └── dashboard.py
-
+```
 ---
 
 ## 🔒 Copyright & Intellectual Property
