@@ -17,10 +17,10 @@ An innovative, zero-hardware-overhead cryptographic pipeline designed for Remote
 
 The system is organized into a modular software architecture consisting of four integrated components:
 
-### 1. Computer Vision Layer (`src/extract.py`)
+### 1. Computer Vision Layer (`extract.py`)
 Converts frames from an on-board monitoring camera into localized tracking metrics. The script converts video frames into the HSV color space to dynamically isolate target bounding boxes (configured to isolate red tracking layers by default). It calculates the precise geometric center coordinates of all moving targets across the frame matrix and appends the raw telemetry data to a localized database file (`outputs/tracking_data.csv`).
 
-### 2. Cryptographic Core Layer (`src/key_generation.py`)
+### 2. Cryptographic Core Layer (`key_generation.py`)
 Constructs a secure multi-variable seed utilizing three independent layers of continuous physical and systemic randomness:
 * **Biological Chaos:** Pipe-separated pixel coordinate configurations of live marine targets (e.g., `"316,334│750,225│569,254"`).
 * **Temporal Chaos:** A 64-bit system clock snapshot accurate to the precise nanosecond, updating constantly.
@@ -28,10 +28,10 @@ Constructs a secure multi-variable seed utilizing three independent layers of co
 
 > **🛡️ Hybrid Fallback Security Logic:** If marine density drops to zero or visibility is occluded by kicked-up seafloor sediment, the engine automatically switches to a **Fallback Mode** using an extended 32-byte OS-level random seed combined with the nanosecond timestamp. This guarantees absolute data security and uninterrupted key streaming regardless of changing environmental visibility.
 
-### 3. Academic Validation Layer (`src/shannon_entropy.py`)
+### 3. Academic Validation Layer (`Shannon Entropy.py`)
 Evaluates the mathematical randomness and cryptographic strength of generated keys by computing their uniform character distribution using Shannon Entropy ($H$) calculations.
 
-### 4. Interactive Command Dashboard (`src/dashboard.py`)
+### 4. Interactive Command Dashboard (`dashbord.py`)
 An integrated desktop user interface built using Tkinter that overlays active detection diagnostics, active tracking metadata frames, real-time key generation hex sequences, and a scrollable system activity ledger concurrently.
 
 ---
@@ -51,66 +51,70 @@ Analysis of the project database `tracking_data.csv` verifies operational robust
 Follow these precise steps to set up your directory environment, install required modules, simulate the pipeline with existing telemetry, and scale it to process your own raw video assets.
 
 ### 📁 1. Project Directory Structure Setup
-Before running any scripts, ensure your local directory is organized exactly like this. The python scripts must be placed within a folder named `src`, and a folder named `outputs` must exist to hold the telemetry data:
+Before running any scripts, ensure your repository directory is organized exactly like this. The Python scripts must be placed in the main directory folder along with your video asset, and a folder named `outputs` must exist to hold your tracking database:
 
 ```text
 ├── README.md
 ├── results.mp4                 # <-- Place your source video asset here
+├── tracking_data.csv           # <-- Upload your sample dataset here
 ├── outputs/
-│   └── tracking_data.csv       # <-- Auto-generated or placed database file
-└── src/
-    ├── extract.py
-    ├── key_generation.py
-    ├── shannon_entropy.py
-    └── dashboard.py
+│   └── tracking_data.csv       # <-- Created automatically by extract.py
+├── extract.py
+├── key_generation.py
+├── Shannon Entropy.py
+└── dashbord.py
 ```
-📦 2. Install Required Dependencies
-Open your terminal or command prompt inside your project directory and execute the following command to install the required computer vision, array processing, and imaging interfaces:
 
-Bash
+### 📦 2. Install Required Dependencies
+Open your terminal, command prompt, or terminal window inside your project directory folder and run the following command to install the necessary computer vision, math arrays, and graphical imaging toolkits:
+
+```bash
 pip install opencv-python numpy pillow
+```
 
-🏃‍♂️ 3. Step-by-Step Execution Guide
+### 🏃‍♂️ 3. Step-by-Step Execution Guide
 
-Step A: Extract Telemetry Data from Video Source
-To process your raw mp4 file (results.mp4), track bounding box positions, and output pixel coordinate maps into your tracking database, execute the extraction script:
+#### Step A: Extract Telemetry Data from Video Source
+To process your raw mp4 file (`results.mp4`), track bounding box positions, and output pixel coordinate maps into your tracking database, execute the extraction script:
+```bash
+python extract.py
+```
+* **Output:** This will create or update `outputs/tracking_data.csv` filled with coordinates matching every frame processed.
 
-Bash
-python src/extract.py
-Output: This will create or update outputs/tracking_data.csv filled with coordinates matching every frame processed.
-
-Step B: Generate Secure Keys from the Dataset
-
+#### Step B: Generate Secure Keys from the Dataset
 To simulate how the cryptographic core converts those raw extracted CSV coordinate entries into unique, one-way SHA-256 keys, run the key generator:
+```bash
+python key_generation.py
+```
+* **Observation:** Notice how the system displays the switch between `FISH` mode when coordinates are present and `FALLBACK` mode if a frame records 0 fish.
 
-Bash
-python src/key_generation.py
-Observation: Notice how the system displays the switch between FISH mode when coordinates are present and FALLBACK mode if a frame records 0 fish.
-
-Step C: Run Academic Security Verification
-
+#### Step C: Run Academic Security Verification
 To calculate the mathematical uniform distribution of your generated keys and verify that your system achieves the required security pass score, run the Shannon Entropy test:
+```bash
+python "Shannon Entropy.py"
+```
+* **Expected Terminal Display:**
+  ```text
+  =========================================
+        ACADEMIC SECURITY VERIFICATION     
+  =========================================
+  Total Key Characters Analyzed: 11008
+  Your Hybrid System Entropy Score: 3.9995 / 4.0000
+  Status: PASSED (Uniform Random Distribution Verified)
+  ```
 
-Bash
-python src/shannon_entropy.py
-Expected Terminal Display:
-
-Plaintext
-=========================================
-      ACADEMIC SECURITY VERIFICATION     
-=========================================
-Total Key Characters Analyzed: 11008
-Your Hybrid System Entropy Score: 3.9995 / 4.0000
-Status: PASSED (Uniform Random Distribution Verified)
-Step D: Launch the Real-Time Graphical Dashboard
+#### Step D: Launch the Real-Time Graphical Dashboard
 To view everything executing simultaneously through a unified desktop GUI overlay—including a video stream container, live coordinate printing, key classification tracking, and a scrolling network log ledger—run the primary dashboard application:
+```bash
+python dashbord.py
+```
 
-Bash
-python src/dashboard.py
 ---
-🔒 Copyright & Intellectual Property
+
+## 🔒 Copyright & Intellectual Property
+
 © 2026 Samritha S. All rights reserved.
 
-This repository and its contents (including all source code, documentation, datasets, and simulation configurations) are the exclusive intellectual property of the author.
+This repository and its contents (including all source code, documentation, datasets, and simulation configurations) are the exclusive intellectual property of the author. 
 
-No open-source license is granted for this software. Visitors may view and clone the code for personal educational evaluation only. Unauthorized copying, modification, distribution, redistribution, or commercial use of this material without explicit written permission from the author is strictly prohibited.
+**No open-source license is granted for this software.** Visitors may view and clone the code for personal educational evaluation only. Unauthorized copying, modification, distribution, redistribution, or commercial use of this material without explicit written permission from the author is strictly prohibited.
