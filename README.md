@@ -69,7 +69,9 @@ Open your terminal or command prompt inside your project directory and execute t
 
 Bash
 pip install opencv-python numpy pillow
+
 🏃‍♂️ 3. Step-by-Step Execution Guide
+
 Step A: Extract Telemetry Data from Video Source
 To process your raw mp4 file (results.mp4), track bounding box positions, and output pixel coordinate maps into your tracking database, execute the extraction script:
 
@@ -78,6 +80,7 @@ python src/extract.py
 Output: This will create or update outputs/tracking_data.csv filled with coordinates matching every frame processed.
 
 Step B: Generate Secure Keys from the Dataset
+
 To simulate how the cryptographic core converts those raw extracted CSV coordinate entries into unique, one-way SHA-256 keys, run the key generator:
 
 Bash
@@ -85,6 +88,7 @@ python src/key_generation.py
 Observation: Notice how the system displays the switch between FISH mode when coordinates are present and FALLBACK mode if a frame records 0 fish.
 
 Step C: Run Academic Security Verification
+
 To calculate the mathematical uniform distribution of your generated keys and verify that your system achieves the required security pass score, run the Shannon Entropy test:
 
 Bash
@@ -103,6 +107,7 @@ To view everything executing simultaneously through a unified desktop GUI overla
 
 Bash
 python src/dashboard.py
+---
 🔒 Copyright & Intellectual Property
 © 2026 Samritha S. All rights reserved.
 
